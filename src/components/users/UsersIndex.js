@@ -17,7 +17,11 @@ export default function UsersIndex() {
             .catch(err=> {
                 swal('Error al traer los usuarios del servidor', '','error');
             });
-    }, [])
+    }, []);
+
+    async function deleteUser(id) {
+        alert(id)
+    }
 
     return(
         <Content pageHeader="Administración de usuarios">
@@ -34,10 +38,12 @@ export default function UsersIndex() {
                         <table className="table table-bordered table-hover table-striped">
                             <thead>
                                 <tr>
-                                    <th>Nombre</th>
-                                    <th>Email</th>
-                                    <th>Solicitado</th>
-                                    <th>Comprobado</th>
+                                    <th className="col-md-3">Nombre</th>
+                                    <th className="col-md-3">Email</th>
+                                    <th className="col-md-1">Solicitado</th>
+                                    <th className="col-md-1">Comprobado</th>
+                                    <th className="col-md-1"></th>
+                                    <th className="col-md-1"></th>
                                 </tr>
                             </thead>
 
@@ -48,6 +54,13 @@ export default function UsersIndex() {
                                         <td>{user.email}</td>
                                         <td>{user.requested} $</td>
                                         <td>{user.checked} $</td>
+                                        <td className="text-center">
+                                            <Link className="btn btn-primary" to={`/user/edit/${user._id}`}><i className="fa fa-user"></i>&nbsp;Editar</Link>
+                                            
+                                        </td>
+                                        <td className="text-center">
+                                            <button className="btn btn-danger" onClick={() => deleteUser(user._id)}><i className="fa fa-user-times"></i>&nbsp;Eliminar</button>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>

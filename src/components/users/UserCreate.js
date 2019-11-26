@@ -11,7 +11,7 @@ export default function UserCreate() {
         password: ''
     });
 
-    async function handleInputChange(e) {
+    function handleInputChange(e) {
         setUsuario({
             ...usuario,
             [e.target.name]: e.target.value
@@ -21,7 +21,7 @@ export default function UserCreate() {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        Axios.post('http://localhost:3001/api/user/store', usuario).then(res => {
+        await Axios.post('http://localhost:3001/api/user/store', usuario).then(res => {
             swal(`El usuario fue creado correctamente`, '', 'success');
             document.getElementById('user-create-form').reset();
         }).catch(err => {
