@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Content from '../../layout/content';
 import Axios from 'axios';
-import swal from 'sweetalert';
+import swal from 'sweetalert2';
 
 export default function UserCreate() {
     const [usuario, setUsuario] = useState({

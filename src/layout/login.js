@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import swal from 'sweetalert2';
 
 export default function Login({ login, mostrarError }) {
     const [usuario, setUsuario]= useState({
@@ -21,7 +22,11 @@ export default function Login({ login, mostrarError }) {
         try{
             await login(usuario.email, usuario.password); 
         }catch(err) {
-            mostrarError('Error al iniciar sesión.', err.response.data.message, 'error');
+            swal.fire({
+                title: 'Error!',
+                text: err.response.data.message,
+                icon: 'error'
+            });
         }
     }
 

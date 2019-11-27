@@ -9,9 +9,9 @@ import Header from './layout/header';
 import Sidebar from './layout/sidebar';
 import Footer from './layout/footer';
 import Login from './layout/login';
-import swal from 'sweetalert';
 import UsersIndex from './components/users/UsersIndex';
 import UserCreate from './components/users/UserCreate';
+import UserEdit from './components/users/UserEdit';
 
 initAxiosInterceptors();
 
@@ -47,20 +47,16 @@ const [usuario, setUsuario] = useState(null);
     deleteToken();
   }
 
-  function mostrarError(mensaje, data, tipoError){
-    swal(mensaje, data, tipoError);
-  }
-
   return (
     <Router>
-      { usuario ? <LoginRoutes usuario={usuario}  logout={logout}/> : <LogoutRoutes login={login} mostrarError={mostrarError}/> }
+      { usuario ? <LoginRoutes usuario={usuario}  logout={logout}/> : <LogoutRoutes login={login} /> }
     </Router>
   );
 }
 
-function LogoutRoutes({ login, mostrarError }) {
+function LogoutRoutes({ login }) {
   return(
-    <Login login={login} mostrarError={mostrarError}/>
+    <Login login={login} />
   )
 }
 
@@ -76,6 +72,7 @@ function LoginRoutes({ usuario, logout }) {
       <div className="content-wrapper">
         
         <Switch>
+          
           <Route 
             path="/users"
             render={props => (
@@ -87,6 +84,13 @@ function LoginRoutes({ usuario, logout }) {
             path="/user/create"
             render={props => (
               <UserCreate {...props} />
+            )}
+          />
+
+          <Route 
+            path="/user/edit/:userId"
+            render={props => (
+              <UserEdit {...props}/>
             )}
           />
 

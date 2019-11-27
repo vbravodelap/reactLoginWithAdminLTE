@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Content from '../../layout/content';
 import Axios from 'axios';
-import swal from 'sweetalert';
+import swal from 'sweetalert2';
 
 
 
@@ -20,7 +20,25 @@ export default function UsersIndex() {
     }, []);
 
     async function deleteUser(id) {
-        alert(id)
+
+        swal.fire({
+            title: '¿Estas seguro?',
+            text: "No podras revertir esta acción!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, eliminalo',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.value) {
+                Axios.delete('http://localhost:3001/api/user/' + id).then(res => {
+                    swal('Correcto!', 'El usuario se elimino correctamente', 'success');
+                }).catch(err => {
+                    swal('Error!', 'El usuario no se elimino correctamente', 'error');
+                });
+            }
+        });
     }
 
     return(
