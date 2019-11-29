@@ -33,9 +33,18 @@ export default function UsersIndex() {
         }).then((result) => {
             if (result.value) {
                 Axios.delete('http://localhost:3001/api/user/' + id).then(res => {
-                    swal('Correcto!', 'El usuario se elimino correctamente', 'success');
+                    swal.fire({
+                        title: 'Correcto!',
+                        text: 'El usuario se elimino creo correctamente',
+                        icon: 'success'
+                    });
+                    window.location.reload(true);
                 }).catch(err => {
-                    swal('Error!', 'El usuario no se elimino correctamente', 'error');
+                    swal.fire({
+                        title: 'Error!',
+                        text: 'El usuario no se elimino correctamente',
+                        icon: 'error'
+                    });
                 });
             }
         });
@@ -46,11 +55,9 @@ export default function UsersIndex() {
             <div className="col-lg-12">
                 <div className="box box-info">
                     <div className="box-header">
-                        <div className="col-lg-4">
-                            <Link to="/user/create" className="btn btn-primary">
-                                <i className="fa fa-user-plus"></i><span style={{marginLeft: 10 + 'px'}}>Agregar usuario</span>
-                            </Link>
-                        </div>
+                        <Link to="/user/create" className="btn btn-primary">
+                            <i className="fa fa-user-plus"></i><span style={{marginLeft: 10 + 'px'}}>Agregar usuario</span>
+                        </Link>
                     </div>
                     <div className="box-body table-responsive">
                         <table className="table table-bordered table-hover table-striped">

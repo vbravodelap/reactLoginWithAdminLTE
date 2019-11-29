@@ -17,7 +17,12 @@ export default function SideBar({ usuario }) {
                             <span>Usuarios</span>
                         </Link>
                     </li>
-                    <li><Link to="/pending"><i className="fa fa-link" /> <span>Another Link</span></Link></li>
+                    <li>
+                        <Link to="/request/index">
+                            <i className="fa fa-link" />
+                            <span>Solicitudes</span>
+                        </Link>
+                    </li>
                     </ul>
                     {/* /.sidebar-menu */}
                 </section>

@@ -24,7 +24,7 @@ export default function Header({ usuario, logout }) {
                         {/* User Account Menu */}
                         <li className="dropdown user user-menu">
                         {/* Menu Toggle Button */}
-                        <Link to="/pending"className="dropdown-toggle" data-toggle="dropdown">
+                        <Link to="#"className="dropdown-toggle" data-toggle="dropdown">
                             {/* hidden-xs hides the username on small devices so only the image appears. */}
                             <span className="hidden-xs">{usuario ? usuario.name : ''}</span>
                         </Link>
@@ -38,7 +38,7 @@ export default function Header({ usuario, logout }) {
                             {/* Menu Footer*/}
                             <li className="user-footer">
                             <div className="pull-left">
-                                <Link to="/pending" className="btn btn-default btn-flat">Perfil</Link>
+                                <Link to={'/user/' + usuario.sub } className="btn btn-default btn-flat">Perfil</Link>
                             </div>
                             <div className="pull-right">
                                 <button onClick={logout} className="btn btn-default btn-flat">Sign out</button>

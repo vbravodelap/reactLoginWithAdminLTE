@@ -22,10 +22,18 @@ export default function UserCreate() {
         e.preventDefault();
 
         await Axios.post('http://localhost:3001/api/user/store', usuario).then(res => {
-            swal(`El usuario fue creado correctamente`, '', 'success');
+            swal.fire({
+                title: 'Correcto!',
+                text: 'El usuario se creo correctamente',
+                icon: 'success'
+            });
             document.getElementById('user-create-form').reset();
         }).catch(err => {
-            swal('Error al crear el usuario', 'Vuelve a intentar', 'error');
+            swal.fire({
+                title: 'Error!',
+                text: 'El usuario no se creo correctamente',
+                icon: 'error'
+            });
         })
     }
     

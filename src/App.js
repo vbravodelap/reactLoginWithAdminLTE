@@ -12,9 +12,12 @@ import Login from './layout/login';
 import UsersIndex from './components/users/UsersIndex';
 import UserCreate from './components/users/UserCreate';
 import UserEdit from './components/users/UserEdit';
+import UserProfile from './components/users/UserProfile';
+import RequestCreate from './components/requests/RequestCreate';
+import RequestIndex from './components/requests/RequestIndex';
+import RequestEdit from './components/requests/RequestEdit';
 
 initAxiosInterceptors();
-
 
 export default function App() {
 const [usuario, setUsuario] = useState(null);
@@ -69,10 +72,20 @@ function LoginRoutes({ usuario, logout }) {
     <div>
       <Header usuario={usuario} logout={logout}/>
       <Sidebar usuario={usuario}/>
-      <div className="content-wrapper">
-        
-        <Switch>
-          
+        <div className="content-wrapper">
+          <UserRoutes />
+          <RequestRoutes />
+        </div>
+      <Footer />
+    </div>
+    
+  )
+}
+
+function UserRoutes() {
+  return(
+    <div>
+        <Switch> 
           <Route 
             path="/users"
             render={props => (
@@ -94,9 +107,43 @@ function LoginRoutes({ usuario, logout }) {
             )}
           />
 
+          <Route
+            path="/user/:userId"
+            render={props => (
+              <UserProfile {...props}/>
+            )}
+          />
         </Switch>
-      </div>
-      <Footer />
+    </div>
+  )
+}
+
+function RequestRoutes() {
+  return(
+    <div>
+        <Switch>
+          <Route 
+            path="/request/create"
+            render={props => (
+              <RequestCreate {...props} />
+            )}
+          />
+
+          <Route
+            path="/request/index"
+            render={props => (
+              <RequestIndex {...props} />
+            )}
+          />
+
+          <Route 
+            path="/request/edit/:requestId"
+            render={props => (
+              <RequestEdit {...props} />
+            )}
+          />
+
+        </Switch>
     </div>
   )
 }
