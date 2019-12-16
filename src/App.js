@@ -16,6 +16,7 @@ import UserProfile from './components/users/UserProfile';
 import RequestCreate from './components/requests/RequestCreate';
 import RequestIndex from './components/requests/RequestIndex';
 import RequestEdit from './components/requests/RequestEdit';
+import CheckupStore from './components/checkups/CheckupStore';
 
 initAxiosInterceptors();
 
@@ -47,6 +48,7 @@ const [usuario, setUsuario] = useState(null);
 
   async function logout() {
     setUsuario(null);
+    window.location = '/login';
     deleteToken();
   }
 
@@ -75,6 +77,7 @@ function LoginRoutes({ usuario, logout }) {
         <div className="content-wrapper">
           <UserRoutes />
           <RequestRoutes />
+          <CheckupRoutes />
         </div>
       <Footer />
     </div>
@@ -146,5 +149,20 @@ function RequestRoutes() {
         </Switch>
     </div>
   )
+}
+
+function CheckupRoutes() {
+  return(
+    <div>
+      <Switch>
+        <Route 
+          path="/checkup/store/:requestId"
+          render={props => (
+            <CheckupStore {...props} />
+          )}
+        />
+      </Switch>
+    </div>
+  );
 }
 

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Content from '../../layout/content';
 import Axios from 'axios';
 import swal from 'sweetalert2';
+import ReactToExcel from 'react-html-table-to-excel';
 
 
 
@@ -58,9 +59,20 @@ export default function UsersIndex() {
                         <Link to="/user/create" className="btn btn-primary">
                             <i className="fa fa-user-plus"></i><span style={{marginLeft: 10 + 'px'}}>Agregar usuario</span>
                         </Link>
+
+                        &nbsp;
+
+                        <ReactToExcel 
+                            id="text-table"
+                            className="btn btn-warning"
+                            table="users-table"
+                            filename="users"
+                            sheet="users"
+                            buttonText="Excel"
+                        />
                     </div>
                     <div className="box-body table-responsive">
-                        <table className="table table-bordered table-hover table-striped">
+                        <table id="users-table" className="table table-bordered table-hover table-striped">
                             <thead>
                                 <tr>
                                     <th className="col-md-3">Nombre</th>

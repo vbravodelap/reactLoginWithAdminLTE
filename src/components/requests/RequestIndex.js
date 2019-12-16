@@ -66,21 +66,20 @@ export default function RequestIndex() {
                         <table className="table table-bordered table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
                                     <th>Usuario</th>
                                     <th>Concepto</th>
                                     <th>Descripción</th>
                                     <th>Cantidad</th>
                                     <th>Status</th>
-                                    <th></th>
-                                    <th></th>
+                                    <th className="col-md-1"></th>
+                                    <th className="col-md-1"></th>
+                                    <th className="col-md-1"></th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 {solicitudes.map((solicitud, i) => (
                                     <tr key={i}>
-                                        <td>{solicitud._id}</td>
                                         <td>{solicitud.user ? solicitud.user.name : 'sin datos'}</td>
                                         <td>{solicitud.concept}</td>
                                         <td>{solicitud.description}</td>
@@ -88,10 +87,12 @@ export default function RequestIndex() {
                                         <td>{solicitud.status}</td>
                                         <td className="text-center">
                                             <Link className="btn btn-primary" to={`/request/edit/${solicitud._id}`}><i className="fa fa-user"></i>&nbsp;Editar</Link>
-                                            
                                         </td>
                                         <td className="text-center">
                                             <button className="btn btn-danger" onClick={() => deleteSolicitud(solicitud._id)}><i className="fa fa-user-times"></i>&nbsp;Eliminar</button>
+                                        </td>
+                                        <td>
+                                            <Link to={`/checkup/store/${solicitud._id}`} className="btn btn-warning"><i className="fa fa-check"/>&nbsp;Comprobar</Link>
                                         </td>
                                     </tr>
                                 ))}

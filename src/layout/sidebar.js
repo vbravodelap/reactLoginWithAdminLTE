@@ -19,7 +19,7 @@ export default function SideBar({ usuario }) {
                     </li>
                     <li>
                         <Link to="/request/index">
-                            <i className="fa fa-link" />
+                            <i className="fa fa-list-alt" />
                             <span>Solicitudes</span>
                         </Link>
                     </li>
